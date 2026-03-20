@@ -1,26 +1,36 @@
 import currencyMap from 'currency-map-country';
 let monedaDelPais, codigoPais;
 
-codigoPais = 'USD';
+codigoPais = 'USA';
 monedaDelPais = obtenerMoneda(codigoPais);
-console.log(`La moneda del país ${codigoPais} es: ${monedaDelPais}`);
+const valores = Object.values(monedaDelPais);
+console.log(`La moneda del país ${codigoPais} es: ${valores[1]}`);
 
 codigoPais = 'UZA';
 monedaDelPais = obtenerMoneda(codigoPais);
-console.log(`La moneda del país ${codigoPais} es: ${monedaDelPais}`);
+if (monedaDelPais != null)
+{
+    const valores2 = Object.values(monedaDelPais);
+    console.log(`La moneda del país ${codigoPais} es: ${valores2[1]}`);
+}
+else
+{
+    console.log(`La moneda del país ${codigoPais} es: null`);
+}
+
 
 function obtenerMoneda(codigoPais){
     try {
-        console.log('codigoPais', codigoPais)
-        let moneda = currencyMap.getCurrency(codigoPais);
+        //console.log('codigoPais', codigoPais)
+        let moneda = currencyMap.getCountry(codigoPais);
         if(!moneda){
-            return "Llegó vacío";
+            return null;
         }
-        console.log('moneda', moneda)
+        //console.log('moneda', moneda)
         return moneda;
         
     } catch(error){
-        return "Error total";
+        return null;
     }
 
 }
